@@ -1,0 +1,18 @@
+03 path 设置 cookie 的作用路径范围
+/=>只要在网站根目录下的所有链接地址都可以访问这个Cookie
+/users =>只能在users目录下的路径才能访问
+
+http://sites3.io/PHP/day1/01 cookie.php
+http://sites3.io/PHP/day1/02 cookie.php
+http://sites3.io/PHP/day1/03 cookie.php
+
+
+domain设置cookie的作用域名范围
+day-01.io => 所有的 day-01.io 的子域都可以访问到
+www.day-01.io ✅
+foo.day-01.io ✅
+day-11.io ❌
+
+www.day-01.io => 所有的 www.day-01.io 的子域都可以访问到
+a.www.day-01.io ✅
+foo.day-01.io ❌
