@@ -10,7 +10,7 @@
 		xhr.open('GET','users.php?id=1');
 		xhr.send(null);
 		xhr.onreadystatechange=function () {
-            if (this.readyState===4) return;
+            if (this.readyState!==4) return;
             console.log(this.responseText);
         };
 	</script>

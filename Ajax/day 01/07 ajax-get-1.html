@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="list"></ul>
+
+	<script>
+		var listElement = document.getElementById('list');
+		var shr= new XMLHttpRequest();
+		shr.open('GET','users.php');
+		shr.send(null);
+		shr.onreadystatechange=function(){
+			if (this.readyState!==4)return;
+			var data = JSON.parse(this.responseText);
+			// console.log(data);
+			for(var i=0;i<data.length;i++){
+				var liElement=document.createElement('li');
+				liElement.innerHTML=data[i].name;
+				liElement.id =data[i].id;
+				listElement.appendChild(liElement);
+				listElement.children[i].addEventListener('click',function(){
+					// console.log('111');
+					// 通过AJAX操作获取服务端对应的数据的信息
+					// 如何获取当前被点击元素的数据的ID
+					// console.log(this.id);
+					var shr1= new XMLHttpRequest();
+					shr1.open('GET','users.php?id='+this.id);
+					shr1.send();
+					shr1.onreadystatechange=function(){
+						if(this.readyState!==4) return;
+						// console.log(this.responseText);
+						var obj = JSON.parse(this.responseText);
+						alert(obj.age);
+					}
+
+			})
+			}
+		}
+
+
+		// 给每个li注册点击事件
+		// 因为li 是后来动态创建的，因此不能这样注册事件
+		// 
+		// for (var i =0 ;i<listElement.children.length; i++){
+		// 	listElement.children[i].addEventListener('click',function(){
+		// 		console.log('111');
+		// 	})
+		// }
+		
+	</script>
+</body>
+</html>
