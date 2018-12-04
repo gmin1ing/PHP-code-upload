@@ -8,7 +8,7 @@ if (!$connection) {
 	exit('<h1>链接数据库失败</h1>');
 }
 // 得到的是查询对象，这个查询对象可以用来到数据库中一行一行拿数据
-$query =mysqli_query($connection,'delete from student_info where id = 6;');
+$query =mysqli_query($connection,'delete from student_info where id = 21;');
 if (!$query) {
 	exit('<h1>查询失败</h1>');
 }
