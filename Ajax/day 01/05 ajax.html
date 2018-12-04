@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+    </head>
+    <body>
+    <script>
+
+        var shr = new XMLHttpRequest();
+        shr.open('POST', './add.php');
+        // shr.setRequestHeader('myHeader', 'Bar'); //设置一个请求头
+        shr.setRequestHeader('Accept', 'text/plain');
+        // 一旦请求体是 urlencoded 格式的内容，一定要设置请求头部中 Content-Type 'application/x-www-form-urlencoded'
+        shr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        shr.send('key1=value&key2=value2'); // 以 urlencoded 格式设置请求体
+        shr.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                console.log("status" + "=====>" + this.status);
+                console.log("statusText" + "=====>" + this.statusText);
+                console.log("getResponseHeader" + "=====>" + this.getResponseHeader("Content-Type"));
+                console.log("getAllResponseHeaders" + "=====>" + this.getAllResponseHeaders());
+                console.log("responseText" + "=====>" + this.responseText);
+                console.log("responseXML" + "=====>" + this.responseXML);
+
+            }
+        };
+    </script>
+    </body>
+</html>

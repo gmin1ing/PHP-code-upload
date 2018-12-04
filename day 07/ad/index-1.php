@@ -2,7 +2,8 @@
 
 if(isset($_GET['action']) && $_GET['action']==='close-ad'){
 	setcookie('hide_ad','1');
-	header('Location: index.php');
+	$_COOKIE['hide_ad'] === '1';
+	// header('Location: index.php');
 }
 ?>
 
