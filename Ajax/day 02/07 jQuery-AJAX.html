@@ -61,6 +61,7 @@
 			url:'./json.php',
 			type:'get',
 			// 用户设置响应体的类型
+			// 一旦设置了dataType属性就不关心服务端响应的Content-Type属性了（就近原则）
 			dataType:'json',
 			success: function(res){
 				console.log(res);

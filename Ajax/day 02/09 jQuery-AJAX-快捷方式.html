@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>高度封装</title>
+</head>
+<body>
+	<script src="jquery-1.12.1.js"></script>
+	<script>
+		$.get('time.php',{id:1},function(res){
+			console.log(res);
+		});
+		$.post('time.php',{id:1},function(res){
+			console.log(res);
+		});
+
+		$.getJSON('json.php',{id:1},function(res){// 防止服务器的content-type没有设置正确的类型
+			console.log(res);
+		});
+
+
+		// 明确请求的方式 根据方式选择快捷方法
+		
+
+		
+	</script>
+</body>
+</html>

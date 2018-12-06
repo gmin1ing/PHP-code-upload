@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="jquery-1.12.1.js"></script>
+	<script>
+		// 原生操作中不管请求状态码是多少都会触发回调
+		// var xhr=new XMLHttpRequest();
+		// xhr.open('get','time1.php');
+		// xhr.send();
+		// xhr.onreadystatechange=function(){
+		// 	if(this.readyState!==4) return;
+		//// 	if(this.readyState!==4|| this.state===200) return;
+		// 	console.log(this.responseText);
+		// }
+
+		// 显示loading
+		$.ajax({
+			url: 'time1.php',
+			type: 'get',
+			// 只用请求成功，状态码是200才会执行这个函数
+			success: function(res){
+				// 隐藏loading
+				console.log(res);
+			},
+			error: function(xhr){
+				//只有请求不正常才会执行
+				// 隐藏loading
+				console.log(xhr);
+			}
+		})
+
+
+		$.ajax({
+			url: 'time1.php',
+			type: 'get',
+			beforeSend: function(xhr){// 在所有发送请求操作（open，send）之前执行
+				console.log(xhr);
+			},
+			success: function(res){// 只用请求成功，状态码是200才会执行这个函数
+				// 隐藏loading
+				console.log(res);
+			},
+			error: function(xhr){//只有请求不正常才会执行
+				// 隐藏loading
+				console.log(xhr);
+			},
+			complete:function(xhr){//请求完成执行的，不管成功或者失败都是完成，都会执行这里的函数
+				console.log(xhr);
+			}
+		})
+		
+		
+	</script>
+</body>
+</html>
