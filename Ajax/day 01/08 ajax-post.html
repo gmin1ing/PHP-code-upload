@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#loading {
+			display: none;
+			background-color: rgba(0,0,0,.3);
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			text-align:center;
+			padding-top: 100px;
+			color: #fff;
+		}
+		#loading {
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="loading">加载中。。。</div>
+	<table>
+		<tr>
+			<td>用户名</td>
+			<td><input type="text" id="username"></td>
+		</tr>
+		<tr>
+			<td>密码</td>
+			<td><input type="password" id="password"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><button id="btn">登录</button></td>
+		</tr> 
+	</table>
+	<script>
+		var btn=document.getElementById('btn');
+			// 1 获取界面上的元素value
+		var txtUsername=document.getElementById('username');
+		var txtPassword=document.getElementById('password');
+		var loading=document.getElementById('loading');
+		btn.onclick=function(){
+			loading.style.display='block';
+			var username=txtUsername.value;
+			var password=txtPassword.value;
+
+			// 2 通过XHR发送一个POST请求
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST','login.php');
+			// 如果请求体是urlencode 格式必须设置这个请求头
+			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			// xhr.send('username='+username+'&password='+password);
+			xhr.send(`username=${username}&password=${password}`);
+			// 3 根据服务端的反馈作出界面提示
+			xhr.onreadystatechange=function(){
+				if (this.readyState!==4) return;
+				console.log(this.responseText);
+				loading.style.display='none';
+			}
+			 
+		}
+	</script>
+</body>
+</html>

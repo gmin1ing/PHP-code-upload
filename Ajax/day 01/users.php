@@ -1,4 +1,5 @@
 <?php
+header('ContentType:application/json');
 /**
  *
  * 返回的响应时一个JSON内容（返回的就是数据）

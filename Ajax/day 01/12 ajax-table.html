@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		img {
+			width: 100px;
+		}
+		#star {
+			color:rgb(244,175,75);
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<td>影片</td>
+				<td>影片名称</td>
+				<td>类型</td>
+				<td>年份</td>
+				<td>评分</td>
+			</tr>
+		</thead>
+		<tbody id="content">
+			
+		</tbody>
+	</table>
+	<script>
+		var xhr=new XMLHttpRequest();
+		xhr.open('GET','a.php');
+		xhr.send();
+		xhr.onreadystatechange=function(){
+			if (this.readyState!==4) return;
+			// console.log(this.responseText);
+			var res = JSON.parse(this.responseText);
+			// console.log(res.subjects);
+			//res=>服务器返回的数据
+			var data = res.subjects;
+			// console.log(data[1]);
+			// console.log(data[1].title);
+			// console.log(data[1].genres);
+			 // console.log(data[1].genres.length);
+			
+			for (var i = 0; i < data.length; i++) {
+	
+				var tbEle = document.getElementById('content');
+			    var trEle = document.createElement('tr');
+			    tbEle.appendChild(trEle);
+
+				var datashow = data[i];
+
+				var imgEle = document.createElement('td');
+				imgEle.innerHTML="<img src='"+ datashow.images.small +"' />";
+				trEle.appendChild(imgEle);
+
+				var titleEle = document.createElement('td');
+				titleEle.innerHTML = datashow.title;
+				trEle.appendChild(titleEle);
+
+				var genresEle=document.createElement('td');
+				genresEle.innerHTML=datashow.genres;
+				trEle.appendChild(genresEle);
+
+				var yearEle=document.createElement('td');
+				yearEle.innerHTML=datashow.year;
+				yearEle.setAttribute('id','year');
+				trEle.appendChild(yearEle);
+
+				var averageEle=document.createElement('td');
+				averageEle.setAttribute('id','star');
+				var str='';
+				console.log(Math.round(datashow.rating.average));
+				switch (Math.round(datashow.rating.average))
+				{
+					case 10: str = '★★★★★★★★★★ ' ;
+							 break;
+					case  9: str = '★★★★★★★★★☆ ';
+							 break;
+					case  8: str = '★★★★★★★★☆☆ ';
+							 break;
+					case  7: str = '★★★★★★★☆☆☆ ';
+							 break;
+					case  6: str = '★★★★★★☆☆☆☆ ';
+							 break;
+					case  5: str = '★★★★★☆☆☆☆☆ ';
+							 break;
+					case  4: str = '★★★★☆☆☆☆☆☆ ';
+							 break;
+					case  3: str = '★★★☆☆☆☆☆☆☆ ';
+							 break;
+					case  2: str = '★★☆☆☆☆☆☆☆☆ ';
+							 break;
+					case  1: str = '★☆☆☆☆☆☆☆☆☆ ';
+							 break;
+					case  0: str = '☆☆☆☆☆☆☆☆☆☆ ';
+							 break;
+				}
+				averageEle.innerHTML= str + datashow.rating.average;
+				trEle.appendChild(averageEle);
+
+
+				
+
+				
+				
+			}
+		}
+	</script>
+</body>
+</html>

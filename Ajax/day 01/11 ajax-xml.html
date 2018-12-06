@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET','xml.php');
+		xhr.send();
+		xhr.onreadystatechange=function(){
+			if (this.readyState!==4) return;
+			// console.log(this.responseText);
+			// console.log(this);
+			// this.responseXML 专门用于
+			// console.log(this.responseXML);
+			console.log(this.responseXML.documentElement.children[0].innerHTML);
+			console.log(this.responseXML.documentElement.getElementsByTagName('name')[0].innerHTML);
+			
+		}
+	</script>
+</body>
+</html>
