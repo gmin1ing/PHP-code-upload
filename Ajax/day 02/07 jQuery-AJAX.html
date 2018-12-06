@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<script src="jquery-1.12.1.js" ></script>
+	<script>
+		// // 最基础的调用 
+		// // 第一个参数：请求的地址
+		// // 第二个参数：对象（请求方法，请求成功后的回调函数）
+		// $.ajax('./time.php',{
+		// 	type:'post',// 请求方法
+		// 	success: function(res){
+		// 		//res => 拿到的只有响应体
+		// 		console.log(res);
+		// 	}
+		// });
+
+
+		// $.ajax({
+		// 	url:'./time.php',
+		// 	type:'post',// 请求方法
+		// 	success: function(res){
+		// 		//res => 拿到的只有响应体
+		// 		console.log(res);
+		// 	}
+		// });
+
+
+		// $.ajax({
+		// 	url:'./time.php',
+		// 	type:'get',// 请求方法
+		// 	// data用于提交到服务端到参数
+		// 	// 如果是GET请求就通过URL传递
+		// 	// 如果是POST请求是通过请求提到方式传递
+		// 	data: { id:1, name:'高'},
+		// 	success: function(res){
+		// 		//res => 拿到的只有响应体
+		// 		console.log(res);
+		// 	}
+		// });
+		
+		
+		// $.ajax({
+		// 	url:'./json.php',
+		// 	type:'get',
+		// 	success: function(res){
+		// 		// res 会自动根据服务端响应的 content-type 自动转换为对象
+		// 		// 这个是jquery内部实现的
+		// 		// 原生js不论content-type都返回字符串
+		// 		console.log(res);
+		// 		//{name: "章三", age: "18"}
+		// 	}
+		// });
+
+
+		$.ajax({
+			url:'./json.php',
+			type:'get',
+			// 用户设置响应体的类型
+			dataType:'json',
+			success: function(res){
+				console.log(res);
+			}
+		});
+	</script>
+</body>
+</html>

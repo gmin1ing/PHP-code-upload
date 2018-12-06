@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装</title>
+</head>
+<body>
+	<script>
+		//******************* version 6 ********************************
+		//================== 封装者 =========================
+		// 不能太可观的封装函数
+		// return方式又无法返回结果
+		// 因此要把操作的方式一起传递过去
+		// 这样我们就可以按照这个方式去操作被封装的函数得到自己想要的结果
+		function ajax(method,url,params,done){
+			var res=null;
+			method=method.toUpperCase();
+			var xhr = new XMLHttpRequest();
+			if (typeof params === 'object') {
+				var tempArr =[];
+				for (var key in params) {
+					var value = params[key];
+					tempArr.push(key + '=' +value);
+				}	
+				// tempArr = > ['key1=value1','key2=value2']
+				params = tempArr.join('&');
+				// tempArr = > 'key1=value1'&'key2=value2'
+			}
+
+			if (method === 'GET') {
+				url +='?'+params;
+			}
+
+			xhr.open(method,url);
+
+			var data = null;
+			if (method === 'POST') {
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				data = params;
+			}
+			
+			
+			xhr.onreadystatechange=function(){
+				if (this.readyState!==4) return;
+				// console.log(this.responseText);
+				done(this.responseText);
+			}
+			xhr.send(data);
+
+		}
+		var onDone=function(res){
+			console.log(res);
+		}
+		//================== 调用者 =========================
+		ajax('GET','time.php', '',onDone);
+		
+		// var res2=ajax('GET','time.php','key1=value1&key2=value2');
+		// var res3=ajax('POST','add.php', { key1: 'value1', key2: 'value2'} );
+		// var res4=ajax('post','add.php', { key1: 'value1', key2: 'value2'} )
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET','a.php');
+		xhr.send(null);
+		// 通过代码告诉请求代理对象我们拿到数据的类型
+		xhr.responseType='json';
+		xhr.onreadystatechange=function(){
+			if(this.readyState!==4) return;
+			console.log(this);
+			// this.response 会根据this.responseType 的变化而变化（为二进制传输数据诞生的）
+			// this.responseText 永远获取的是字符串形式的响应体
+		}
+	</script>
+</body>
+</html>

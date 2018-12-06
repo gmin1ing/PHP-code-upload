@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET','time.php');
+		// 设置请求行
+		xhr.setRequestHeader('Accect','text/plain');
+		// 设置请求体
+		xhr.send(null);
+		xhr.onreadystatechange=function(){
+			if (this.readyState===4) {
+				// 获取状态码
+				console.log(this.status);
+				// 状态描述
+				console.log(this.stateText);
+				console.log(this.getResponseHeader('Content-Type'));
+				console.log(this.getAllResponseHeaders());
+				console.log(this.responseText);
+				console.log(this.responseXML);
+
+			}
+		}
+	</script>
+	
+</body>
+</html>
