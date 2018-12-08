@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>尝试找到一个不同源地址发送AJAX请求</title>
+	<!-- link 的真正的定义： 链入一个文档，通过 rel 属性申明链入文档与当前文档之间的关系 -->
+	<!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+</head>
+<body>
+	<!-- <iframe src="10 load/index.html" frameborder="0"></iframe> -->
+	<script>
+
+		// 希望被AJAX的地址：http://sites0.io/PHP/API/01%20string.php
+		// img link script iframe
+		// 
+		// 1 img 
+		// var img = new Image();
+		// img.src ='http://sites0.io/PHP/API/01%20string.php';
+		// 2 link
+		// 可以发送请求
+		// 无法拿到响应结果
+		// var link = document.createElement('link');
+		// link.rel = 'stylesheet';
+		// link.href = 'http://sites0.io/PHP/API/01%20string.php';
+		// document.body.appendChild(link);
+		// 
+		// 3 script
+		var script = document.createElement('script');
+		script.src = 'http://localhost/time2.php';
+		document.body.appendChild(script);
+		// console.log(a);
+		function foo (res){
+			console.log(res);
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>尝试对不同源地址发送AJAX请求</title>
+</head>
+<body>
+	<script src="jquery-1.12.1.js"></script>
+	<script>
+		// 当前页面的访问地址：http://sites3.io/PHP-code-upload/Ajax/day%2002/11%20ajax-%E8%B7%A8%E5%9F%9F.html
+		// 希望被AJAX的地址：http://sites0.io/PHP/API/01%20string.php
+		// 这两个地址，协议相同，端口相同，域名不同，所以是两个不同源的地址
+		// 同源策略指的是： 不同源地址之间，默认不能相互发送AJAX请求
+		// 不同源地址之间如果需要相互请求，必须服额度和客户端配合才能完成
+		// Access-Control-Allow-Origin
+		$.get('http://sites0.io/PHP/API/01%20string.php',function(){
+			console.log(res);
+		});
+		
+		
+	</script>
+</body>
+</html>
