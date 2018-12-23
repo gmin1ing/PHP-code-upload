@@ -1,3 +1,10 @@
+<?php
+
+require_once '../functions.php';
+xiu_get_current_user();
+?>
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -29,6 +36,7 @@
             <label class="form-image">
               <input id="avatar" type="file">
               <img src="/static/assets/img/default.png">
+              <input type="hidden" name="avatar">
               <i class="mask fa fa-upload"></i>
             </label>
           </div>
@@ -75,6 +83,26 @@
 
   <script src="/static/assets/vendors/jquery/jquery.js"></script>
   <script src="/static/assets/vendors/bootstrap/js/bootstrap.js"></script>
+  <script>
+    // 异步文件上传
+    $('#avatar').on('change',function(){// 文件选择状态变化时会执行这个事件处理函数
+      var $this = $(this);
+      var files = $this.prop('files');
+      if (!files.length) return;
+      var file = files[0];
+      var data = new FormData();
+      data.append('avatar',file);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST','/admin/api/upload.php');
+      xhr.send(data);
+      xhr.onload = function(){
+        // console.log(this.responseText);
+        $this.siblings('img').attr('src', this.responseText);
+        $this.siblings('input').attr('value',this.responseText);
+      }
+
+    });
+  </script>
   <script>NProgress.done()</script>
 </body>
 </html>
